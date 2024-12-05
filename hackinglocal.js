@@ -2,6 +2,13 @@ import { getRootAccess, checkAndCopyScripts } from 'utils.js';
 
 /** @param {NS} ns */
 export async function main(ns) {
+    // Check if servers.txt exists, if not, run scan.js
+    if (!ns.fileExists('servers.txt')) {
+        ns.tprint('servers.txt not found, running scan.js...');
+        await ns.run('scan.js');
+        await ns.sleep(5000); // Wait for scan.js to complete
+    }
+
     const serverData = await ns.read('servers.txt');
     const servers = JSON.parse(serverData);
 

@@ -2,15 +2,20 @@ import { getRootAccess, checkAndCopyScripts } from 'utils.js';
 
 /** @param {NS} ns */
 export async function main(ns) {
+    // Check if servers.txt exists, if not, run scan.js
+    if (!ns.fileExists('servers.txt')) {
+        ns.tprint('servers.txt not found, running scan.js...');
+        await ns.run('scan.js');
+        await ns.sleep(5000); // Wait for scan.js to complete
+    }
+
     const serverData = await ns.read('servers.txt');
     const servers = JSON.parse(serverData);
 
-    const hackScript = 'hack.js';
     const growScript = 'grow.js';
     const weakenScript = 'weaken.js';
-    const scripts = [hackScript, growScript, weakenScript];
+    const scripts = [growScript, weakenScript];
 
-    const hackRam = ns.getScriptRam(hackScript);
     const growRam = ns.getScriptRam(growScript);
     const weakenRam = ns.getScriptRam(weakenScript);
 
@@ -27,8 +32,7 @@ export async function main(ns) {
 
             await checkAndCopyScripts(ns, server.name, scripts);
 
-            const availableRam = server.maxRam - ns.getServerUsedRam(server.name);
-            const maxHackThreads = Math.floor(availableRam / hackRam);
+            const availableRam = ns.getServerMaxRam(ns.getHostname()) - ns.getServerUsedRam(ns.getHostname());
             const maxGrowThreads = Math.floor(availableRam / growRam);
             const maxWeakenThreads = Math.floor(availableRam / weakenRam);
 
@@ -40,40 +44,18 @@ export async function main(ns) {
             ns.print(`Server: ${server.name}, Root Access: ${ns.hasRootAccess(server.name)}, Hacking Skill: ${ns.getHackingLevel()}, Required Skill: ${server.hackingLevel}`);
 
             if (availableMoney === 0) {
-                const target = servers.find(s => ns.getServerMoneyAvailable(s.name) > 10000);
-                if (target) {
-                    if (currentSecurityLevel > minSecurityLevel + 5) {
-                        if (maxWeakenThreads > 0 && !ns.isRunning(weakenScript, server.name, target.name)) {
-                            ns.exec(weakenScript, server.name, maxWeakenThreads, target.name, maxWeakenThreads);
-                        }
-                    } else if (availableMoney < maxMoney * 0.75) {
-                        if (maxGrowThreads > 0 && !ns.isRunning(growScript, server.name, target.name)) {
-                            ns.exec(growScript, server.name, maxGrowThreads, target.name, maxGrowThreads);
-                        }
-                    } else {
-                        if (maxHackThreads > 0 && !ns.isRunning(hackScript, server.name, target.name)) {
-                            ns.exec(hackScript, server.name, maxHackThreads, target.name, maxHackThreads);
-                        }
-                    }
-                }
-            } else {
-                if (currentSecurityLevel > minSecurityLevel + 5) {
-                    if (maxWeakenThreads > 0 && !ns.isRunning(weakenScript, server.name, server.name)) {
-                        ns.exec(weakenScript, server.name, maxWeakenThreads, server.name, maxWeakenThreads);
-                    }
-                } else if (availableMoney < maxMoney * 0.75) {
-                    if (maxGrowThreads > 0 && !ns.isRunning(growScript, server.name, server.name)) {
-                        ns.exec(growScript, server.name, maxGrowThreads, server.name, maxGrowThreads);
-                    }
-                } else {
-                    if (maxHackThreads > 0 && !ns.isRunning(hackScript, server.name, server.name)) {
-                        ns.exec(hackScript, server.name, maxHackThreads, server.name, maxHackThreads);
-                    }
-                }
+                ns.print(`Skipping ${server.name} because it has 0 money`);
+                return;
+            }
+
+            if (currentSecurityLevel > minSecurityLevel + 5) {
+                ns.exec(weakenScript, ns.getHostname(), maxWeakenThreads, server.name);
+            } else if (availableMoney < maxMoney * 0.75) {
+                ns.exec(growScript, ns.getHostname(), maxGrowThreads, server.name);
             }
         });
 
         await Promise.all(promises);
-        await ns.sleep(5000);
+        await ns.sleep(1000);
     }
 }
