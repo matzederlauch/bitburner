@@ -28,14 +28,14 @@ export async function main(ns) {
         ns.tprint(`Server ${serverName} purchased successfully.`);
 
         if (action === 'hack') {
-            // Copy scripts to the new server
-            const scripts = ['hack.js', 'grow.js', 'weaken.js', 'scannerlocal.js'];
-            for (const script of scripts) {
-                await ns.scp(script, serverName);
+            // Copy scripts and servers.txt to the new server
+            const files = ['hack.js', 'grow.js', 'weaken.js', 'hackinglocal.js', 'servers.txt'];
+            for (const file of files) {
+                await ns.scp(file, serverName);
             }
 
-            // Run scannerlocal.js on the new server
-            ns.exec('scannerlocal.js', serverName, 1);
+            // Run hackinglocal.js on the new server
+            ns.exec('hackinglocal.js', serverName, 1);
         }
     } else {
         ns.tprint(`Failed to purchase server ${serverName}.`);
