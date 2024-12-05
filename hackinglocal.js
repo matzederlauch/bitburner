@@ -2,6 +2,13 @@ import { getRootAccess, checkAndCopyScripts } from 'utils.js';
 
 /** @param {NS} ns */
 export async function main(ns) {
+    // Check if servers.txt exists, if not, run scan.js
+    if (!ns.fileExists('servers.txt')) {
+        ns.tprint('servers.txt not found, running scan.js...');
+        await ns.run('scan.js');
+        await ns.sleep(5000); // Wait for scan.js to complete
+    }
+
     const serverData = await ns.read('servers.txt');
     const servers = JSON.parse(serverData);
 
@@ -25,10 +32,6 @@ export async function main(ns) {
 
             await checkAndCopyScripts(ns, server.name, scripts);
 
-            const availableRam = ns.getServerMaxRam(ns.getHostname()) - ns.getServerUsedRam(ns.getHostname());
-            const maxGrowThreads = Math.floor(availableRam / growRam);
-            const maxWeakenThreads = Math.floor(availableRam / weakenRam);
-
             const minSecurityLevel = ns.getServerMinSecurityLevel(server.name);
             const currentSecurityLevel = ns.getServerSecurityLevel(server.name);
             const maxMoney = ns.getServerMaxMoney(server.name);
@@ -42,9 +45,9 @@ export async function main(ns) {
             }
 
             if (currentSecurityLevel > minSecurityLevel + 5) {
-                ns.exec(weakenScript, ns.getHostname(), maxWeakenThreads, server.name);
+                    ns.exec(weakenScript, ns.getHostname(), 15, server.name);
             } else if (availableMoney < maxMoney * 0.75) {
-                ns.exec(growScript, ns.getHostname(), maxGrowThreads, server.name);
+                    ns.exec(growScript, ns.getHostname(), 15, server.name);
             }
         });
 
