@@ -12,10 +12,12 @@ export async function main(ns) {
     const serverData = await ns.read('servers.txt');
     const servers = JSON.parse(serverData);
 
+    const hackScript = 'hack.js';
     const growScript = 'grow.js';
     const weakenScript = 'weaken.js';
-    const scripts = [growScript, weakenScript];
+    const scripts = [hackScript, growScript, weakenScript];
 
+    const hackRam = ns.getScriptRam(hackScript);
     const growRam = ns.getScriptRam(growScript);
     const weakenRam = ns.getScriptRam(weakenScript);
 
@@ -32,7 +34,8 @@ export async function main(ns) {
 
             await checkAndCopyScripts(ns, server.name, scripts);
 
-            const availableRam = ns.getServerMaxRam(ns.getHostname()) - ns.getServerUsedRam(ns.getHostname());
+            const availableRam = server.maxRam - ns.getServerUsedRam(server.name);
+            const maxHackThreads = Math.floor(availableRam / hackRam);
             const maxGrowThreads = Math.floor(availableRam / growRam);
             const maxWeakenThreads = Math.floor(availableRam / weakenRam);
 
@@ -44,18 +47,40 @@ export async function main(ns) {
             ns.print(`Server: ${server.name}, Root Access: ${ns.hasRootAccess(server.name)}, Hacking Skill: ${ns.getHackingLevel()}, Required Skill: ${server.hackingLevel}`);
 
             if (availableMoney === 0) {
-                ns.print(`Skipping ${server.name} because it has 0 money`);
-                return;
-            }
-
-            if (currentSecurityLevel > minSecurityLevel + 5) {
-                ns.exec(weakenScript, ns.getHostname(), maxWeakenThreads, server.name);
-            } else if (availableMoney < maxMoney * 0.75) {
-                ns.exec(growScript, ns.getHostname(), maxGrowThreads, server.name);
+                const target = servers.find(s => ns.getServerMoneyAvailable(s.name) > 10000);
+                if (target) {
+                    if (currentSecurityLevel > minSecurityLevel + 5) {
+                        if (maxWeakenThreads > 0 && !ns.isRunning(weakenScript, server.name, target.name)) {
+                            ns.exec(weakenScript, server.name, maxWeakenThreads, target.name, maxWeakenThreads);
+                        }
+                    } else if (availableMoney < maxMoney * 0.75) {
+                        if (maxGrowThreads > 0 && !ns.isRunning(growScript, server.name, target.name)) {
+                            ns.exec(growScript, server.name, maxGrowThreads, target.name, maxGrowThreads);
+                        }
+                    } else {
+                        if (maxHackThreads > 0 && !ns.isRunning(hackScript, server.name, target.name)) {
+                            ns.exec(hackScript, server.name, maxHackThreads, target.name, maxHackThreads);
+                        }
+                    }
+                }
+            } else {
+                if (currentSecurityLevel > minSecurityLevel + 5) {
+                    if (maxWeakenThreads > 0 && !ns.isRunning(weakenScript, server.name, server.name)) {
+                        ns.exec(weakenScript, server.name, maxWeakenThreads, server.name, maxWeakenThreads);
+                    }
+                } else if (availableMoney < maxMoney * 0.75) {
+                    if (maxGrowThreads > 0 && !ns.isRunning(growScript, server.name, server.name)) {
+                        ns.exec(growScript, server.name, maxGrowThreads, server.name, maxGrowThreads);
+                    }
+                } else {
+                    if (maxHackThreads > 0 && !ns.isRunning(hackScript, server.name, server.name)) {
+                        ns.exec(hackScript, server.name, maxHackThreads, server.name, maxHackThreads);
+                    }
+                }
             }
         });
 
         await Promise.all(promises);
-        await ns.sleep(1000);
+        await ns.sleep(5000);
     }
 }
