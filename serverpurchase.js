@@ -17,6 +17,7 @@ export async function main(ns) {
     const cost = ns.getPurchasedServerCost(gb);
 
     if (ns.getServerMoneyAvailable('home') < cost) {
+
         ns.tprint(`Error: Not enough money to purchase a server with ${gb} GB. Required: ${cost}`);
         return;
     }
