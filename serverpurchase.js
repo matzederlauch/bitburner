@@ -29,7 +29,7 @@ export async function main(ns) {
 
         if (action === 'hack') {
             // Copy scripts and servers.txt to the new server
-            const files = ['hack.js', 'grow.js', 'weaken.js', 'hackinglocal.js', 'servers.txt'];
+            const files = ['hack.js', 'grow.js', 'weaken.js', 'hackinglocal.js', 'servers.txt', 'utils.js'];
             for (const file of files) {
                 await ns.scp(file, serverName);
             }
