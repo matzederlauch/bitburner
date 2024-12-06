@@ -1,0 +1,783 @@
+{
+  "n00dles": {
+    "connections": [
+      "home",
+      "zer0"
+    ],
+    "availableRam": 4,
+    "requiredHackingLevel": 1,
+    "hasMoney": true
+  },
+  "home": {
+    "connections": [
+      "n00dles",
+      "foodnstuff",
+      "sigma-cosmetics",
+      "joesguns",
+      "hong-fang-tea",
+      "harakiri-sushi",
+      "iron-gym",
+      "darkweb",
+      "psrv-1",
+      "psrv-2",
+      "psrv-3",
+      "psrv-4",
+      "psrv-5",
+      "psrv-6",
+      "psrv-7",
+      "psrv-8",
+      "psrv-9",
+      "psrv-10",
+      "psrv-11",
+      "psrv-12",
+      "psrv-13",
+      "psrv-14",
+      "psrv-15",
+      "psrv-16"
+    ],
+    "availableRam": 2048,
+    "requiredHackingLevel": 1,
+    "hasMoney": true
+  },
+  "foodnstuff": {
+    "connections": [
+      "home",
+      "nectar-net",
+      "CSEC"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 1,
+    "hasMoney": true
+  },
+  "nectar-net": {
+    "connections": [
+      "foodnstuff"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 20,
+    "hasMoney": true
+  },
+  "CSEC": {
+    "connections": [
+      "foodnstuff",
+      "neo-net",
+      "omega-net"
+    ],
+    "availableRam": 8,
+    "requiredHackingLevel": 51,
+    "hasMoney": false
+  },
+  "neo-net": {
+    "connections": [
+      "CSEC",
+      "johnson-ortho",
+      "crush-fitness"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 50,
+    "hasMoney": true
+  },
+  "johnson-ortho": {
+    "connections": [
+      "neo-net"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 285,
+    "hasMoney": true
+  },
+  "crush-fitness": {
+    "connections": [
+      "neo-net",
+      "rothman-uni"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 235,
+    "hasMoney": true
+  },
+  "rothman-uni": {
+    "connections": [
+      "crush-fitness"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 409,
+    "hasMoney": true
+  },
+  "omega-net": {
+    "connections": [
+      "CSEC",
+      "avmnite-02h"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 215,
+    "hasMoney": true
+  },
+  "avmnite-02h": {
+    "connections": [
+      "omega-net"
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 213,
+    "hasMoney": false
+  },
+  "sigma-cosmetics": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 5,
+    "hasMoney": true
+  },
+  "joesguns": {
+    "connections": [
+      "home",
+      "max-hardware"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 10,
+    "hasMoney": true
+  },
+  "max-hardware": {
+    "connections": [
+      "joesguns"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 80,
+    "hasMoney": true
+  },
+  "hong-fang-tea": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 30,
+    "hasMoney": true
+  },
+  "harakiri-sushi": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 40,
+    "hasMoney": true
+  },
+  "iron-gym": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 100,
+    "hasMoney": true
+  },
+  "darkweb": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-1": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 256,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-2": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 256,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-3": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 1024,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-4": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 512,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-5": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 1024,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-6": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 2048,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-7": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 2048,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-8": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 2048,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-9": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 8192,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-10": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 8192,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-11": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 65536,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-12": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 65536,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-13": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 131072,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-14": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 131072,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-15": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 65536,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "psrv-16": {
+    "connections": [
+      "home"
+    ],
+    "availableRam": 1048576,
+    "requiredHackingLevel": 1,
+    "hasMoney": false
+  },
+  "zer0": {
+    "connections": [
+      "n00dles",
+      "silver-helix",
+      "phantasy"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 75,
+    "hasMoney": true
+  },
+  "silver-helix": {
+    "connections": [
+      "zer0",
+      "the-hub",
+      "computek",
+      "netlink"
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 150,
+    "hasMoney": true
+  },
+  "the-hub": {
+    "connections": [
+      "silver-helix"
+    ],
+    "availableRam": 8,
+    "requiredHackingLevel": 281,
+    "hasMoney": true
+  },
+  "computek": {
+    "connections": [
+      "silver-helix",
+      "summit-uni",
+      "catalyst",
+      "I.I.I.I"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 351,
+    "hasMoney": true
+  },
+  "summit-uni": {
+    "connections": [
+      "computek"
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 445,
+    "hasMoney": true
+  },
+  "catalyst": {
+    "connections": [
+      "computek",
+      "lexo-corp"
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 441,
+    "hasMoney": true
+  },
+  "lexo-corp": {
+    "connections": [
+      "catalyst",
+      "snap-fitness"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 671,
+    "hasMoney": true
+  },
+  "snap-fitness": {
+    "connections": [
+      "lexo-corp"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 688,
+    "hasMoney": true
+  },
+  "I.I.I.I": {
+    "connections": [
+      "computek",
+      "rho-construction",
+      "millenium-fitness"
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 352,
+    "hasMoney": false
+  },
+  "rho-construction": {
+    "connections": [
+      "I.I.I.I",
+      "global-pharm"
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 514,
+    "hasMoney": true
+  },
+  "global-pharm": {
+    "connections": [
+      "rho-construction",
+      "omnia",
+      "deltaone",
+      "unitalife"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 787,
+    "hasMoney": true
+  },
+  "omnia": {
+    "connections": [
+      "global-pharm",
+      "solaris"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 851,
+    "hasMoney": true
+  },
+  "solaris": {
+    "connections": [
+      "omnia",
+      "zb-def"
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 777,
+    "hasMoney": true
+  },
+  "zb-def": {
+    "connections": [
+      "solaris",
+      "titan-labs"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 794,
+    "hasMoney": true
+  },
+  "titan-labs": {
+    "connections": [
+      "zb-def",
+      "fulcrumtech"
+    ],
+    "availableRam": 128,
+    "requiredHackingLevel": 819,
+    "hasMoney": true
+  },
+  "fulcrumtech": {
+    "connections": [
+      "titan-labs",
+      "4sigma"
+    ],
+    "availableRam": 512,
+    "requiredHackingLevel": 1208,
+    "hasMoney": true
+  },
+  "4sigma": {
+    "connections": [
+      "fulcrumtech"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 996,
+    "hasMoney": true
+  },
+  "deltaone": {
+    "connections": [
+      "global-pharm",
+      "defcomm",
+      "univ-energy",
+      "zeus-med"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 848,
+    "hasMoney": true
+  },
+  "defcomm": {
+    "connections": [
+      "deltaone",
+      "infocomm",
+      "taiyang-digital"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 1043,
+    "hasMoney": true
+  },
+  "infocomm": {
+    "connections": [
+      "defcomm",
+      "run4theh111z"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 917,
+    "hasMoney": true
+  },
+  "run4theh111z": {
+    "connections": [
+      "infocomm"
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 511,
+    "hasMoney": false
+  },
+  "taiyang-digital": {
+    "connections": [
+      "defcomm"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 881,
+    "hasMoney": true
+  },
+  "univ-energy": {
+    "connections": [
+      "deltaone"
+    ],
+    "availableRam": 128,
+    "requiredHackingLevel": 845,
+    "hasMoney": true
+  },
+  "zeus-med": {
+    "connections": [
+      "deltaone"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 823,
+    "hasMoney": true
+  },
+  "unitalife": {
+    "connections": [
+      "global-pharm",
+      "icarus"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 811,
+    "hasMoney": true
+  },
+  "icarus": {
+    "connections": [
+      "unitalife",
+      "nova-med"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 868,
+    "hasMoney": true
+  },
+  "nova-med": {
+    "connections": [
+      "icarus",
+      "microdyne",
+      "applied-energetics"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 782,
+    "hasMoney": true
+  },
+  "microdyne": {
+    "connections": [
+      "nova-med",
+      "vitalife"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 844,
+    "hasMoney": true
+  },
+  "vitalife": {
+    "connections": [
+      "microdyne",
+      "omnitek"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 884,
+    "hasMoney": true
+  },
+  "omnitek": {
+    "connections": [
+      "vitalife",
+      "b-and-a"
+    ],
+    "availableRam": 128,
+    "requiredHackingLevel": 951,
+    "hasMoney": true
+  },
+  "b-and-a": {
+    "connections": [
+      "omnitek",
+      "megacorp"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 974,
+    "hasMoney": true
+  },
+  "megacorp": {
+    "connections": [
+      "b-and-a"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 1291,
+    "hasMoney": true
+  },
+  "applied-energetics": {
+    "connections": [
+      "nova-med",
+      "stormtech",
+      "helios"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 847,
+    "hasMoney": true
+  },
+  "stormtech": {
+    "connections": [
+      "applied-energetics"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 1007,
+    "hasMoney": true
+  },
+  "helios": {
+    "connections": [
+      "applied-energetics",
+      "kuai-gong",
+      "."
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 868,
+    "hasMoney": true
+  },
+  "kuai-gong": {
+    "connections": [
+      "helios",
+      "blade",
+      "nwo",
+      "clarkinc"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 1299,
+    "hasMoney": true
+  },
+  "blade": {
+    "connections": [
+      "kuai-gong"
+    ],
+    "availableRam": 64,
+    "requiredHackingLevel": 916,
+    "hasMoney": true
+  },
+  "nwo": {
+    "connections": [
+      "kuai-gong"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 1073,
+    "hasMoney": true
+  },
+  "clarkinc": {
+    "connections": [
+      "kuai-gong"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 1071,
+    "hasMoney": true
+  },
+  ".": {
+    "connections": [
+      "helios",
+      "powerhouse-fitness"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 545,
+    "hasMoney": false
+  },
+  "powerhouse-fitness": {
+    "connections": [
+      ".",
+      "ecorp",
+      "fulcrumassets",
+      "The-Cave"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 983,
+    "hasMoney": true
+  },
+  "ecorp": {
+    "connections": [
+      "powerhouse-fitness"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 1186,
+    "hasMoney": true
+  },
+  "fulcrumassets": {
+    "connections": [
+      "powerhouse-fitness"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 1334,
+    "hasMoney": true
+  },
+  "The-Cave": {
+    "connections": [
+      "powerhouse-fitness"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 925,
+    "hasMoney": false
+  },
+  "millenium-fitness": {
+    "connections": [
+      "I.I.I.I",
+      "galactic-cyber"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 517,
+    "hasMoney": true
+  },
+  "galactic-cyber": {
+    "connections": [
+      "millenium-fitness"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 867,
+    "hasMoney": true
+  },
+  "netlink": {
+    "connections": [
+      "silver-helix",
+      "zb-institute",
+      "syscore"
+    ],
+    "availableRam": 128,
+    "requiredHackingLevel": 416,
+    "hasMoney": true
+  },
+  "zb-institute": {
+    "connections": [
+      "netlink"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 736,
+    "hasMoney": true
+  },
+  "syscore": {
+    "connections": [
+      "netlink",
+      "alpha-ent",
+      "aevum-police"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 627,
+    "hasMoney": true
+  },
+  "alpha-ent": {
+    "connections": [
+      "syscore"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 532,
+    "hasMoney": true
+  },
+  "aevum-police": {
+    "connections": [
+      "syscore",
+      "aerocorp"
+    ],
+    "availableRam": 16,
+    "requiredHackingLevel": 408,
+    "hasMoney": true
+  },
+  "aerocorp": {
+    "connections": [
+      "aevum-police"
+    ],
+    "availableRam": 0,
+    "requiredHackingLevel": 882,
+    "hasMoney": true
+  },
+  "phantasy": {
+    "connections": [
+      "zer0"
+    ],
+    "availableRam": 32,
+    "requiredHackingLevel": 100,
+    "hasMoney": true
+  }
+}

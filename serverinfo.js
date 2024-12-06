@@ -1,19 +1,18 @@
 /** @param {NS} ns */
 export async function main(ns) {
-    let gb = ns.args[0]; // Get the first argument passed to the script
-    if (typeof gb !== 'number') {
-        ns.tprint('Error: The argument must be a number representing the GB of the server.');
-        return;
+    const gbOptions = [];
+    for (let i = 0; i <= 20; i++) {
+        gbOptions.push(Math.pow(2, i));
     }
 
-    // Check if the number is a power of 2
-    if ((gb & (gb - 1)) !== 0) {
-        gb = Math.pow(2, Math.ceil(Math.log2(gb)));
-        ns.tprint(`The provided GB is not a power of 2. Rounding up to the nearest power of 2: ${gb} GB`);
-    }
+    const costs = gbOptions.map(gb => ({
+        gb,
+        cost: ns.getPurchasedServerCost(gb)
+    }));
 
-    const cost = ns.getPurchasedServerCost(gb);
-    ns.tprint(`The cost of a server with ${gb} GB is ${formatMoney(cost)}`);
+    costs.forEach(({ gb, cost }) => {
+        ns.tprint(`The cost of a server with ${gb} GB is ${formatMoney(cost)}`);
+    });
 }
 
 function formatMoney(amount) {
