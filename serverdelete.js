@@ -9,8 +9,9 @@ export async function main(ns) {
 
     const serverName = `psrv-${serverNumber}`;
     if (ns.serverExists(serverName)) {
+        ns.killall(serverName);
         ns.deleteServer(serverName);
-        ns.tprint(`Server ${serverName} deleted.`);
+        ns.tprint(`All scripts on server ${serverName} killed and server deleted.`);
     } else {
         ns.tprint(`Server ${serverName} does not exist.`);
     }

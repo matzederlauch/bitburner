@@ -22,8 +22,11 @@ export async function main(ns) {
         return;
     }
 
-    const serverCount = ns.getPurchasedServers().length;
-    const serverName = `psrv-${serverCount + 1}`;
+    const purchasedServers = ns.getPurchasedServers();
+    const serverNumbers = purchasedServers.map(name => parseInt(name.split('-')[1], 10));
+    const maxServerNumber = serverNumbers.length > 0 ? Math.max(...serverNumbers) : 0;
+    const serverName = `psrv-${maxServerNumber + 1}`;
+
     const purchased = ns.purchaseServer(serverName, gb);
     if (purchased) {
         ns.tprint(`Server ${serverName} purchased successfully.`);
@@ -37,6 +40,15 @@ export async function main(ns) {
 
             // Run hackinglocal.js on the new server
             ns.exec('hackinglocal.js', serverName, 1, maxScripts);
+        } else if (action === 'hackmax') {
+            // Copy hack.js and xpfarm.js to the new server
+            const files = ['hack.js', 'grow.js', 'weaken.js', 'hackinglocalmax.js', 'servers.txt', 'utils.js'];
+            for (const file of files) {
+                await ns.scp(file, serverName);
+            }
+
+            // Run xpfarm.js on the new server with the argument 'foodnstuff'
+            ns.exec('hackinglocalmax.js', serverName, 1, maxScripts);
         } else if (action === 'farm') {
             // Copy hack.js and xpfarm.js to the new server
             const files = ['hack.js', 'xpfarm.js'];
