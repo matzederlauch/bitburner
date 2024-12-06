@@ -2,6 +2,7 @@
 export async function main(ns) {
     let gb = ns.args[0];
     const action = ns.args[1];
+    let maxScripts = ns.args[2];
 
     if (typeof gb !== 'number') {
         ns.tprint('Error: The argument must be a number representing the GB of the server.');
@@ -17,7 +18,6 @@ export async function main(ns) {
     const cost = ns.getPurchasedServerCost(gb);
 
     if (ns.getServerMoneyAvailable('home') < cost) {
-
         ns.tprint(`Error: Not enough money to purchase a server with ${gb} GB. Required: ${cost}`);
         return;
     }
@@ -36,7 +36,16 @@ export async function main(ns) {
             }
 
             // Run hackinglocal.js on the new server
-            ns.exec('hackinglocal.js', serverName, 1);
+            ns.exec('hackinglocal.js', serverName, 1, maxScripts);
+        } else if (action === 'farm') {
+            // Copy hack.js and xpfarm.js to the new server
+            const files = ['hack.js', 'xpfarm.js'];
+            for (const file of files) {
+                await ns.scp(file, serverName);
+            }
+
+            // Run xpfarm.js on the new server with the argument 'foodnstuff'
+            ns.exec('xpfarm.js', serverName, 1, 'foodnstuff');
         }
     } else {
         ns.tprint(`Failed to purchase server ${serverName}.`);

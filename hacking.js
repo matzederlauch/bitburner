@@ -30,6 +30,10 @@ export async function main(ns) {
 
             if (!ns.hasRootAccess(server.name)) {
                 await getRootAccess(ns, server.name);
+                if (!ns.hasRootAccess(server.name)) {
+                    ns.print(`Skipping ${server.name} because root access could not be obtained`);
+                    return;
+                }
             }
 
             await checkAndCopyScripts(ns, server.name, scripts);
@@ -81,6 +85,6 @@ export async function main(ns) {
         });
 
         await Promise.all(promises);
-        await ns.sleep(5000);
+        await ns.sleep(10);
     }
 }

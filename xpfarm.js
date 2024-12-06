@@ -5,7 +5,7 @@ export async function main(ns) {
     const currentServer = ns.getHostname();
 
     while (true) {
-        ns.exec(hackScript, currentServer, 20, target);
-        await ns.sleep(50);
+        ns.exec(hackScript, currentServer, 30, target);
+        await ns.sleep(1);
     }
 }

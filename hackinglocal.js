@@ -1,4 +1,4 @@
-import { getRootAccess, checkAndCopyScripts } from 'utils.js';
+import {checkAndCopyScripts, getRootAccess} from 'utils.js';
 
 /** @param {NS} ns */
 export async function main(ns) {
@@ -16,6 +16,8 @@ export async function main(ns) {
     const weakenScript = 'weaken.js';
     const scripts = [growScript, weakenScript];
 
+    let maxScripts = Number.isInteger(ns.args[0]) && ns.args[0] > 0 ? ns.args[0] : 10;
+
     const growRam = ns.getScriptRam(growScript);
     const weakenRam = ns.getScriptRam(weakenScript);
 
@@ -28,6 +30,10 @@ export async function main(ns) {
 
             if (!ns.hasRootAccess(server.name)) {
                 await getRootAccess(ns, server.name);
+                if (!ns.hasRootAccess(server.name)) {
+                    ns.print(`Skipping ${server.name} because root access could not be obtained`);
+                    return;
+                }
             }
 
             await checkAndCopyScripts(ns, server.name, scripts);
@@ -44,14 +50,20 @@ export async function main(ns) {
                 return;
             }
 
+            const runningScripts = ns.ps(ns.getHostname()).filter(p => p.args.includes(server.name)).length;
+            if (runningScripts >= maxScripts) {
+                ns.print(`Skipping ${server.name} because it already has 10 running scripts`);
+                return;
+            }
+
             if (currentSecurityLevel > minSecurityLevel + 5) {
-                    ns.exec(weakenScript, ns.getHostname(), 15, server.name);
+                ns.exec(weakenScript, ns.getHostname(), 15, server.name);
             } else if (availableMoney < maxMoney * 0.75) {
-                    ns.exec(growScript, ns.getHostname(), 15, server.name);
+                ns.exec(growScript, ns.getHostname(), 15, server.name);
             }
         });
 
         await Promise.all(promises);
-        await ns.sleep(1000);
+        await ns.sleep(10);
     }
 }

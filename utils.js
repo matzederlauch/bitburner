@@ -32,10 +32,12 @@ export async function getRootAccess(ns, server) {
 }
 
 /** @param {NS} ns */
+/** @param {NS} ns */
 export async function checkAndCopyScripts(ns, server, scripts) {
-    for (const script of scripts) {
-        if (!ns.fileExists(script, server)) {
-            await ns.scp(script, server);
+    const filesToCopy = [...scripts, 'servers.txt'];
+    for (const file of filesToCopy) {
+        if (!ns.fileExists(file, server)) {
+            await ns.scp(file, server);
         }
     }
 }
