@@ -54,9 +54,9 @@ export async function main(ns) {
             }
 
             if (currentSecurityLevel > minSecurityLevel + 5) {
-                ns.exec(weakenScript, ns.getHostname(), 15, server.name);
+                ns.exec(weakenScript, ns.getHostname(), 30, server.name);
             } else if (availableMoney < maxMoney * 0.75) {
-                ns.exec(growScript, ns.getHostname(), 15, server.name);
+                ns.exec(growScript, ns.getHostname(), 30, server.name);
             }
         });
 
